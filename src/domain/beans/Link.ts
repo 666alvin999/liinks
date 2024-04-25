@@ -12,4 +12,20 @@ class Link {
 		this.url = url;
 	}
 
+	public get getService(): Service {
+		return this.service;
+	}
+
+	public get getLinkName(): string {
+		return this.linkName;
+	}
+
+	public get getUsername(): string | null {
+		return this.username;
+	}
+
+	public get getUrl(): string | null {
+		return this.url;
+	}
+
 }

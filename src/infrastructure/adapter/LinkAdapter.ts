@@ -1,13 +1,19 @@
-class LinkAdapter implements LinkRepository {
+import LinkDao from "../dao/LinkDao.ts";
+
+export default class LinkAdapter implements LinkRepository {
 
 	private linkDao: LinkDao;
+	private linkMapper: LinkMapper;
 
-	constructor(linkDao: LinkDao) {
+	public constructor(linkDao: LinkDao, linkMapper: LinkMapper) {
 		this.linkDao = linkDao;
+		this.linkMapper = linkMapper;
 	}
 
-	create(link: Link, username: string): ActionSuccess {
-		return this.linkDao.create(link, username);
+	public async create(link: Link, username: string): Promise<ActionSuccess> {
+		const linkDTO: LinkDTO = this.linkMapper.mapToDTO(link, username);
+
+		return await this.linkDao.create(linkDTO);
 	}
 
 	delete(linkName: string, username: string): ActionSuccess {

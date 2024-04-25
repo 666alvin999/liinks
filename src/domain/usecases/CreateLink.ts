@@ -6,8 +6,8 @@ class CreateLink {
 		this.linkRepository = linkRepository;
 	}
 
-	public execute(link: Link, username: string): ActionSuccess {
-		return this.linkRepository.create(link, username);
+	public async execute(link: Link, username: string): Promise<ActionSuccess> {
+		return await this.linkRepository.create(link, username);
 	}
 
 }
