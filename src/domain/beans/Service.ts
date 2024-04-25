@@ -1,0 +1,1 @@
+type Service = "Twitter" | "LinkedIn" | "Instagram" | "Facebook" | "Behance" | "Other";
