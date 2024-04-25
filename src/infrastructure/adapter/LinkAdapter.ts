@@ -1,4 +1,8 @@
 import LinkDao from "../dao/LinkDao.ts";
+import LinkMapper from "../mapper/LinkMapper.ts";
+import LinkRepository from "../../domain/ports/LinkRepository.ts";
+import Link from "../../domain/beans/Link.ts";
+import ActionSuccess from "../../domain/beans/ActionSuccess.ts";
 
 export default class LinkAdapter implements LinkRepository {
 

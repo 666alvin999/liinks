@@ -1,1 +1,1 @@
-type Service = "Twitter" | "LinkedIn" | "Instagram" | "Facebook" | "Behance" | "Other";
+export type Service = "Twitter" | "LinkedIn" | "Instagram" | "Facebook" | "Behance" | "Other";

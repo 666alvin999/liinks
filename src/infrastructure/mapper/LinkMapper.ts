@@ -1,4 +1,8 @@
-class LinkMapper {
+import Link from "../../domain/beans/Link.ts";
+import {LinkDTO} from "../dto/LinkDTO.ts";
+import {ServiceUrl} from "../dto/ServiceUrl.ts";
+
+export default class LinkMapper {
 
 	public mapToDTO(link: Link, username: string): LinkDTO {
 		let url: string = "";

@@ -1,4 +1,4 @@
-class ActionSuccess {
+export default class ActionSuccess {
 
 	private success: boolean;
 	private errorMessage?: string;

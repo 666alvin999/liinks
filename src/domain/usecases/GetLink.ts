@@ -1,3 +1,6 @@
+import Link from "../beans/Link.ts";
+import LinkRepository from "../ports/LinkRepository.ts";
+
 class GetLink {
 
 	private linkRepository: LinkRepository;

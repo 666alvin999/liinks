@@ -1,4 +1,4 @@
-class Link {
+export default class Link {
 
 	private service: Service;
 	private linkName: string;

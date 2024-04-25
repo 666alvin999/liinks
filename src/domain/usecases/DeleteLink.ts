@@ -1,3 +1,6 @@
+import ActionSuccess from "../beans/ActionSuccess.ts";
+import LinkRepository from "../ports/LinkRepository.ts";
+
 class DeleteLink {
 
 	private linkRepository: LinkRepository;

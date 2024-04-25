@@ -1,4 +1,8 @@
-class CreateLink {
+import ActionSuccess from "../beans/ActionSuccess.ts";
+import Link from "../beans/Link.ts";
+import LinkRepository from "../ports/LinkRepository.ts";
+
+export default class CreateLink {
 
 	private linkRepository: LinkRepository;
 

@@ -1,4 +1,4 @@
-enum ServiceUrl {
+export enum ServiceUrl {
 	Twitter = "https://twitter.com/",
 	Facebook = "https://facebook.com/",
 	LinkedIn = "https://linkedin.com/in/",
