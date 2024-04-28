@@ -1,5 +1,5 @@
 import Link from "../../domain/bean/Link.ts";
-import {LinkDTO} from "../dto/LinkDTO.ts";
+import LinkDTO from "../dto/LinkDTO.ts";
 import {ServiceUrl} from "../dto/ServiceUrl.ts";
 
 export default class LinkMapper {
@@ -28,31 +28,25 @@ export default class LinkMapper {
 				break;
 		}
 
-		return {
-			id: link.getId,
-			service: link.getService,
-			url: url,
-			linkName: link.getLinkName,
-			userName: username,
-		}
+		return new LinkDTO(link.getId, link.getService, url, link.getLinkName, username)
 	}
 
 	public mapToDomain(linkDTO: LinkDTO): Link {
-		let username = "";
+		let socialMediaUserName = "";
 
-		if (linkDTO.service !== "Other") {
-			const splittedUrl = linkDTO.service.split("/");
-			username = splittedUrl[splittedUrl.length - 1];
+		if (linkDTO.getService !== "Other") {
+			const splittedUrl = linkDTO.getService.split("/");
+			socialMediaUserName = splittedUrl[splittedUrl.length - 1];
 		}
 
-		const url = linkDTO.service !== "Other" ?
-			null : linkDTO.url;
+		const url = linkDTO.getService !== "Other" ?
+			null : linkDTO.getUrl;
 
 		return new Link(
-			linkDTO.id,
-			linkDTO.service,
-			linkDTO.linkName,
-			username,
+			linkDTO.getId,
+			linkDTO.getService,
+			linkDTO.getLinkName,
+			socialMediaUserName,
 			url
 		);
 	}

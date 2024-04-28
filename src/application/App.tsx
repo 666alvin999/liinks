@@ -1,7 +1,7 @@
 import {useEffect, useState} from "react";
 import {createLink, getAllLinksByUsername} from "./initializer.ts";
-import Link from "./domain/bean/Link.ts";
-import {Service} from "./domain/bean/Service.ts";
+import Link from "../domain/bean/Link.ts";
+import {Service} from "../domain/bean/Service.ts";
 import {createLogger} from "vite";
 
 const App = () => {
