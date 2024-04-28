@@ -1,8 +1,39 @@
-import {Service} from "../../domain/beans/Service.ts";
+import {Service} from "../../domain/bean/Service.ts";
 
-export type LinkDTO = {
-	service: Service;
-	url: string;
-	linkName: string;
-	userName: string;
+export default class LinkDTO {
+
+	private id: string;
+	private service: Service;
+	private url: string;
+	private linkName: string;
+	private userName: string;
+
+	constructor(id: string, service: Service, url: string, linkName: string, userName: string) {
+		this.id = id;
+		this.service = service;
+		this.url = url;
+		this.linkName = linkName;
+		this.userName = userName;
+	}
+
+	public get getId() {
+		return this.id;
+	}
+
+	public get getService() {
+		return this.service;
+	}
+
+	public get getUrl() {
+		return this.url;
+	}
+
+	public get getLinkName() {
+		return this.linkName;
+	}
+
+	public get getUsername() {
+		return this.userName;
+	}
+
 }

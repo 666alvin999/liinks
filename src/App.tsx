@@ -1,7 +1,8 @@
-import {useState} from "react";
-import {createLink} from "./initializer.ts";
-import Link from "./domain/beans/Link.ts";
-import {Service} from "./domain/beans/Service.ts";
+import {useEffect, useState} from "react";
+import {createLink, getAllLinksByUsername} from "./initializer.ts";
+import Link from "./domain/bean/Link.ts";
+import {Service} from "./domain/bean/Service.ts";
+import {createLogger} from "vite";
 
 const App = () => {
 
@@ -9,8 +10,13 @@ const App = () => {
 	const [service, setService] = useState<Service>("Other");
 	const [username, setUsername] = useState('');
 
+	useEffect(() => {
+		getAllLinksByUsername.execute("testusername")
+			.then(data => console.log(data));
+	},[]);
+
 	const submit = async () => {
-		const link: Link = new Link(service, linkName, username, null);
+		const link: Link = new Link("12", service, linkName, username, null);
 		createLink.execute(link, "testusername").then(
 			data => console.log(data)
 		)
