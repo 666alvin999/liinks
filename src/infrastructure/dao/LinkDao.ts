@@ -27,7 +27,7 @@ export default class LinkDao {
 		}
 
 		try {
-			await this.base('User').create(linkObject);
+			await this.base('Links').create(linkObject);
 			return new ActionSuccess(true);
 		} catch (error) {
 			console.log(error);
@@ -36,28 +36,21 @@ export default class LinkDao {
 	}
 
 	public async getAllLinksByUsername(username: string): Promise<Array<LinkDTO>> {
-		const options: RequestInit = {
-			method: "GET",
-			headers: {
-				"Content-Type": "application/json",
-				"Accept": "application/json",
-				"Authorization": `Bearer ${import.meta.env.VITE_AIRTABLE_API_KEY}`,
-			}
+		try {
+			const records = await this.base('Links').select({
+				filterByFormula: `({userName} = '${username}')`
+			}).all();
+
+			return records.map((record) => new LinkDTO(
+				record.id,
+				record.fields.service as Service,
+				record.fields.url as string,
+				record.fields.linkName as string,
+				record.fields.userName as string
+			));
+		} catch (error) {
+			console.log(error);
+			return new Array<LinkDTO>();
 		}
-
-		const rs = await fetch("https://api.airtable.com/v0/appGwyvBOAneHNtCV/User/", options);
-		const data = await rs.json();
-
-		return data.records
-			.filter((record: Record) => record.fields.userName === username)
-			.map((record: Record): LinkDTO => {
-				return new LinkDTO(
-					record.id,
-					record.fields.service,
-					record.fields.linkName,
-					record.fields.url,
-					record.fields.userName
-				);
-			});
 	}
 }

@@ -10,7 +10,6 @@ class DeleteLink {
 	}
 
 	public execute(linkName: string, username: string): ActionSuccess {
-
 		return this.linkRepository.delete(linkName, username);
 	}
 

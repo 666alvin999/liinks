@@ -35,7 +35,8 @@ export default class LinkMapper {
 		let socialMediaUserName = "";
 
 		if (linkDTO.getService !== "Other") {
-			const splittedUrl = linkDTO.getService.split("/");
+			const splittedUrl = linkDTO.getUrl.split("/");
+			console.log(splittedUrl);
 			socialMediaUserName = splittedUrl[splittedUrl.length - 1];
 		}
 

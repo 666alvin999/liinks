@@ -11,9 +11,9 @@ const App = () => {
 	const [username, setUsername] = useState('');
 
 	useEffect(() => {
-		getAllLinksByUsername.execute("testusername")
+		getAllLinksByUsername.execute("666alvin999")
 			.then(data => console.log(data));
-	},[]);
+	}, []);
 
 	const submit = async () => {
 		const link: Link = new Link("12", service, linkName, username, null);
