@@ -4,11 +4,13 @@ import LinkMapper from "../infrastructure/mapper/LinkMapper.ts";
 import CreateLink from "../domain/usecase/CreateLink.ts";
 import LinkRepository from "../domain/port/LinkRepository.ts";
 import GetAllLinksByUsername from "../domain/usecase/GetAllLinksByUsername.ts";
+import DeleteLink from "../domain/usecase/DeleteLink.ts";
 
 const linkDAO: LinkDao = new LinkDao();
 const linkMapper: LinkMapper = new LinkMapper();
 const linkRepository: LinkRepository = new LinkAdapter(linkDAO, linkMapper);
 const createLink: CreateLink = new CreateLink(linkRepository);
+const deleteLink: DeleteLink = new DeleteLink(linkRepository);
 const getAllLinksByUsername = new GetAllLinksByUsername(linkRepository);
 
-export {createLink, getAllLinksByUsername};
+export {createLink, getAllLinksByUsername, deleteLink};

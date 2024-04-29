@@ -19,19 +19,26 @@ export default class LinkDao {
 
 	public async create(link: LinkDTO): Promise<ActionSuccess> {
 		const linkObject = {
-			id: link.getId,
 			service: link.getService,
 			linkName: link.getLinkName,
 			url: link.getUrl,
-			username: link.getUsername
+			userName: link.getUsername
 		}
 
 		try {
 			await this.base('Links').create(linkObject);
 			return new ActionSuccess(true);
 		} catch (error) {
-			console.log(error);
 			return new ActionSuccess(false, "Une erreur est survenue lors de l'enregistrement");
+		}
+	}
+
+	public async delete(linkId: string): Promise<ActionSuccess> {
+		try {
+			await this.base('Links').destroy(linkId);
+			return new ActionSuccess(true);
+		} catch (error) {
+			return new ActionSuccess(false, "Une erreur est survenue lors de la suppression");
 		}
 	}
 
@@ -49,7 +56,6 @@ export default class LinkDao {
 				record.fields.userName as string
 			));
 		} catch (error) {
-			console.log(error);
 			return new Array<LinkDTO>();
 		}
 	}

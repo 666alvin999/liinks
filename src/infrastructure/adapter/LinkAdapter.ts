@@ -3,7 +3,7 @@ import LinkMapper from "../mapper/LinkMapper.ts";
 import LinkRepository from "../../domain/port/LinkRepository.ts";
 import Link from "../../domain/bean/Link.ts";
 import ActionSuccess from "../../domain/bean/ActionSuccess.ts";
-import {LinkDTO} from "../dto/LinkDTO.ts";
+import LinkDTO from "../dto/LinkDTO.ts";
 
 export default class LinkAdapter implements LinkRepository {
 
@@ -21,8 +21,8 @@ export default class LinkAdapter implements LinkRepository {
 		return await this.linkDao.create(linkDTO);
 	}
 
-	public delete(linkName: string, username: string): ActionSuccess {
-		return new ActionSuccess(true);
+	public async delete(linkId: string): Promise<ActionSuccess> {
+		return this.linkDao.delete(linkId);
 	}
 
 	public async getAllLinksByUsername(username: string): Promise<Array<Link>> {

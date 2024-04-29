@@ -1,1 +1,8 @@
-export type Service = "Twitter" | "LinkedIn" | "Instagram" | "Facebook" | "Behance" | "Other";
+export enum Service {
+	Twitter = "Twitter",
+	Facebook = "Facebook",
+	LinkedIn = "LinkedIn",
+	Instagram = "Instagram",
+	Behance = "Behance",
+	Other = "Other"
+}
