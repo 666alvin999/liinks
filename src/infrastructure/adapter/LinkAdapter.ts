@@ -21,6 +21,11 @@ export default class LinkAdapter implements LinkRepository {
 		return await this.linkDao.create(linkDTO);
 	}
 
+	public async update(link: Link, username: string): Promise<ActionSuccess> {
+		const linkDTO: LinkDTO = this.linkMapper.mapToDTO(link, username);
+		return this.linkDao.update(linkDTO);
+	}
+
 	public async delete(linkId: string): Promise<ActionSuccess> {
 		return this.linkDao.delete(linkId);
 	}
@@ -28,10 +33,6 @@ export default class LinkAdapter implements LinkRepository {
 	public async getAllLinksByUsername(username: string): Promise<Array<Link>> {
 		const linkDTOs: Array<LinkDTO> = await this.linkDao.getAllLinksByUsername(username);
 		return this.linkMapper.mapAllToDomain(linkDTOs);
-	}
-
-	public update(link: Link, username: string): ActionSuccess {
-		return new ActionSuccess(true);
 	}
 
 }

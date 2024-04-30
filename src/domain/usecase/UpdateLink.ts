@@ -2,7 +2,7 @@ import ActionSuccess from "../bean/ActionSuccess.ts";
 import Link from "../bean/Link.ts";
 import LinkRepository from "../port/LinkRepository.ts";
 
-class UpdateLink {
+export default class UpdateLink {
 
 	private linkRepository: LinkRepository;
 
@@ -10,7 +10,7 @@ class UpdateLink {
 		this.linkRepository = linkRepository;
 	}
 
-	public execute({link, username}: { link: Link, username: string }): ActionSuccess {
+	public async execute({link, username}: { link: Link, username: string }): Promise<ActionSuccess> {
 		return this.linkRepository.update(link, username);
 	}
 

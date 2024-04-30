@@ -6,14 +6,14 @@ export default class LinkDTO {
 	private service: Service;
 	private url: string;
 	private linkName: string;
-	private userName: string;
+	private username: string;
 
 	constructor(id: string, service: Service, url: string, linkName: string, userName: string) {
 		this.id = id;
 		this.service = service;
 		this.url = url;
 		this.linkName = linkName;
-		this.userName = userName;
+		this.username = userName;
 	}
 
 	public get getId() {
@@ -33,7 +33,11 @@ export default class LinkDTO {
 	}
 
 	public get getUsername() {
-		return this.userName;
+		return this.username;
+	}
+
+	public equals(LinkDTO: LinkDTO): boolean {
+		return this.id === LinkDTO.id;
 	}
 
 }

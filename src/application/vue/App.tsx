@@ -1,7 +1,8 @@
 import {useEffect, useState} from "react";
-import {createLink, deleteLink, getAllLinksByUsername} from "./initializer.ts";
-import Link from "../domain/bean/Link.ts";
-import {Service} from "../domain/bean/Service.ts";
+import {createLink, deleteLink, getAllLinksByUsername, linksPresenter} from "../initializer.ts";
+import Link from "../../domain/bean/Link.ts";
+import {Service} from "../../domain/bean/Service.ts";
+import LinksPresentationDTO from "../dto/LinksPresentationDTO.ts";
 
 const App = () => {
 
@@ -9,11 +10,15 @@ const App = () => {
 	const [service, setService] = useState<Service>(Service.Other);
 	const [username, setUsername] = useState('');
 
-	const [links, setLinks] = useState<Array<Link>>([]);
+	const [links, setLinks] = useState<LinksPresentationDTO>();
 
 	useEffect(() => {
-		getAllLinksByUsername.execute("666alvin999")
-			.then(data => setLinks(data));
+		const getLinks = async () => {
+			const links: LinksPresentationDTO = await getAllLinksByUsername.execute("666alvin999", linksPresenter);
+			setLinks(links);
+		}
+
+		getLinks();
 	}, []);
 
 	const submit = async () => {
@@ -44,7 +49,8 @@ const App = () => {
 
 			<div>
 				{
-					links.map((link) => (<button onClick={deleteFromDB} value={link.getId}>{link.getLinkName}</button>))
+					links?.getLinks.map((link) => <button onClick={deleteFromDB}
+					                                      value={link.getId}>{link.getLinkName}</button>)
 				}
 			</div>
 		</>

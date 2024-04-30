@@ -3,16 +3,6 @@ import ActionSuccess from "../../domain/bean/ActionSuccess.ts";
 import LinkDTO from "../dto/LinkDTO.ts";
 import {Service} from "../../domain/bean/Service.ts";
 
-type Record = {
-	id: string,
-	fields: {
-		service: Service,
-		linkName: string,
-		url: string,
-		userName: string
-	}
-};
-
 export default class LinkDao {
 
 	private base: Airtable.Base = new Airtable({apiKey: `${import.meta.env.VITE_AIRTABLE_API_KEY}`}).base(`${import.meta.env.VITE_AIRTABLE_BASE_ID}`);
@@ -22,7 +12,7 @@ export default class LinkDao {
 			service: link.getService,
 			linkName: link.getLinkName,
 			url: link.getUrl,
-			userName: link.getUsername
+			username: link.getUsername
 		}
 
 		try {
@@ -42,6 +32,26 @@ export default class LinkDao {
 		}
 	}
 
+	public async update(link: LinkDTO): Promise<ActionSuccess> {
+		try {
+			const existingLink: LinkDTO = await this.getLinkById(link.getId);
+
+			if (existingLink.equals(link)) {
+				this.base('Links').update(link.getId, {
+					linkName: link.getLinkName,
+					username: link.getUsername,
+					service: link.getService,
+					url: link.getUrl
+				});
+				return new ActionSuccess(true);
+			}
+
+			return new ActionSuccess(false, "Le lien à modifier n'existe pas");
+		} catch (error) {
+			return new ActionSuccess(false, "Impossible de modifier le lien, veuillez réessayer");
+		}
+	}
+
 	public async getAllLinksByUsername(username: string): Promise<Array<LinkDTO>> {
 		try {
 			const records = await this.base('Links').select({
@@ -53,10 +63,22 @@ export default class LinkDao {
 				record.fields.service as Service,
 				record.fields.url as string,
 				record.fields.linkName as string,
-				record.fields.userName as string
+				record.fields.username as string
 			));
 		} catch (error) {
 			return new Array<LinkDTO>();
 		}
+	}
+
+	private async getLinkById(linkId: string): Promise<LinkDTO> {
+		const record = await this.base('Links').find(linkId);
+
+		return new LinkDTO(
+			record.id,
+			record.fields.service as Service,
+			record.fields.url as string,
+			record.fields.linkName as string,
+			record.fields.username as string
+		);
 	}
 }

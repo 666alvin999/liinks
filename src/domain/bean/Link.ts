@@ -8,11 +8,11 @@ export default class Link {
 	private socialMediaUserName: string | null;
 	private url: string | null;
 
-	constructor(id: string, service: Service, linkName: string, username: string | null, url: string | null) {
+	constructor(id: string, service: Service, linkName: string, socialMediaUserName: string | null, url: string | null) {
 		this.id = id;
 		this.service = service;
 		this.linkName = linkName;
-		this.socialMediaUserName = username;
+		this.socialMediaUserName = socialMediaUserName;
 		this.url = url;
 	}
 
