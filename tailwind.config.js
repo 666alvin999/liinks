@@ -6,6 +6,16 @@ export default {
   ],
   theme: {
     extend: {},
+    screens: {
+      'sm': '576px',
+      'md': '768px',
+      'lg': '992px',
+      'xl': '1200px',
+      '2xl': '1400px',
+    },
+    fontFamily: {
+      'inter': ['Inter', 'sans-serif', 'ui-sans-serif', 'system-ui', 'sans-serif', 'Apple Color Emoji', 'Segoe UI Emoji', 'Segoe UI Symbol', 'Noto Color Emoji'],
+    }
   },
   plugins: [],
 }
