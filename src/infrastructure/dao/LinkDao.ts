@@ -16,6 +16,19 @@ export default class LinkDao {
 		}
 
 		try {
+			const fetchedLinkDTOs: Array<LinkDTO> = await this.getAllLinksByUsername(link.getUsername);
+
+			if (
+				link.getService !== "Other"
+				&& fetchedLinkDTOs.filter(fetchedLinkDTO => link.getService === fetchedLinkDTO.getService).length > 0
+			) {
+				return new ActionSuccess(false, "Ce type de lien existe déjà");
+			}
+
+			if (fetchedLinkDTOs.length >= 10) {
+				return new ActionSuccess(false, "Vous possédez déjà le nombre maximum de liens")
+			}
+
 			await this.base('Links').create(linkObject);
 			return new ActionSuccess(true);
 		} catch (error) {

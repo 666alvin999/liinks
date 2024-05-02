@@ -8,6 +8,26 @@ import Home from "./application/vue/Home.tsx";
 import Sign from "./application/vue/Sign.tsx";
 import Links from "./application/vue/Links.tsx";
 import Template from "./application/vue/Template.tsx";
+import {createBrowserRouter, RouterProvider} from "react-router-dom";
+
+const router = createBrowserRouter([
+    {
+        path: "/",
+        element: <Home />,
+    },
+    {
+        path: "/login",
+        element: <Login />,
+    },
+    {
+        path: "/signup",
+        element: <Sign />
+    },
+    {
+        path: "/:username",
+        element: <Template />,
+    }
+])
 
 ReactDOM.createRoot(document.getElementById('root')!).render(
     <React.StrictMode>
@@ -19,12 +39,7 @@ ReactDOM.createRoot(document.getElementById('root')!).render(
                 height: '1.5rem',
             }}
         >
-            {/*<App />*/}
-            <Home />
-            <Login />
-            <Sign />
-            <Links />
-            <Template />
+            <RouterProvider router={router} />
         </IconoirProvider>
     </React.StrictMode>,
 )
