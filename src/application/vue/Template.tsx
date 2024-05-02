@@ -7,7 +7,7 @@ function Template() {
                 <div className="fixed bottom-8 left-0 w-full flex justify-center items-center z-10">
                     <a className="text-xl lg:text-2xl font-medium bg-white px-4 h-12 text-black inline-flex justify-center items-center gap-2 rounded-full drop-shadow-lg">
                         <XrayView />
-                        <span className="block text-sm font-semibold">Create your Linktree</span>
+                        <span className="block text-sm font-semibold">Create your Liiink</span>
                     </a>
                 </div>
                 <main className="relative flex w-full min-h-screen justify-center pt-8 lg:pb-3 lg:p-12 bg-gradient-to-b from-indigo-500 via-purple-500 to-pink-500">
