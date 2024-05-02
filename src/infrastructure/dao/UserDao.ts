@@ -8,7 +8,7 @@ export default class UserDao {
 
 	public async getUserByUsername(username: string): Promise<User | null> {
 		const users = await this.base('Users').select({
-			filterByFormula: `({username} = ${username})`
+			filterByFormula: `({username} = '${username}')`
 		}).all();
 
 		if (users.length === 1) {

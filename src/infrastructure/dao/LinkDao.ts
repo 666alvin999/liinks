@@ -68,7 +68,7 @@ export default class LinkDao {
 	public async getAllLinksByUsername(username: string): Promise<Array<LinkDTO>> {
 		try {
 			const records = await this.base('Links').select({
-				filterByFormula: `({userName} = '${username}')`
+				filterByFormula: `({username} = '${username}')`
 			}).all();
 
 			return records.map((record) => new LinkDTO(
