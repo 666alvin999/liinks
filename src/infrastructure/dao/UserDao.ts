@@ -11,11 +11,14 @@ export default class UserDao {
 			filterByFormula: `({username} = ${username})`
 		}).all();
 
-		if (users.length > 0) {
+		if (users.length === 1) {
 			return new User(
-				users[0].fields.userName as string,
+				users[0].fields.email as string,
+				users[0].fields.username as string,
 				users[0].fields.firstName as string,
 				users[0].fields.lastName as string,
+				users[0].fields.biography as string,
+				users[0].fields.backgroundColors as Array<string>
 			);
 		}
 
@@ -24,9 +27,12 @@ export default class UserDao {
 
 	public async create(user: User): Promise<ActionSuccess> {
 		const userObject = {
+			email: user.getEmail,
 			firstName: user.getFirstName,
 			lastName: user.getLastName,
-			username: user.getUsername
+			username: user.getUsername,
+			biography: user.getBiography,
+			backgroundColors: user.getBackgroundColors
 		}
 
 		try {
