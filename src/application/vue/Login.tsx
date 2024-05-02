@@ -3,6 +3,8 @@ import Logo from "../components/Logo";
 import {useNavigate} from "react-router-dom";
 import {logUserIn} from "../initializer.ts";
 import {useState} from "react";
+import ActionSuccess from "../../domain/bean/ActionSuccess.ts";
+import InputText from "../components/InputText.tsx";
 
 const Login = () => {
 
@@ -13,11 +15,18 @@ const Login = () => {
 	const [error, setError] = useState("");
 
 	const navigateToUserPage = async () => {
-		navigate("/app/666alvin999", {
-			state: {
-				loginUsername: "666alvin999"
-			}
-		})
+		const verifyLogin = await logUserIn.execute(username, password);
+
+		if (verifyLogin.getSuccess) {
+			navigate(`/${username}`, {
+				state: {
+					loginUsername: {username}
+				}
+			})
+		} else {
+			setError(verifyLogin.getErrorMessage!);
+            alert(error);
+		}
 	}
 
 	return (
@@ -28,25 +37,29 @@ const Login = () => {
 					<div className="flex flex-col lg:!pt-24 w-10/12 lg:w-[640px] pt-16 p-6">
 						<div className="mt-6 mb-12">
 							<h1 className="text-black !leading-tight text-[32px] lg:text-5xl font-extrabold leading-heading text-center mb-2">
-								Tout ce que tu es. <br />En un, simple lien en bio.
+								Connectez-vous !
 							</h1>
 							<p className="text-gray-500 text-center">Connectez-vous à vos Liiinks</p>
 						</div>
-						<form>
+						<div>
 							<div className="mb-4 flex flex-col gap-2">
-
+                                <InputText type="text" id="username" label="Nom d'utilisateur" onChange={(e) => setUsername(e.target.value)}/>
+                                <InputText type="password" id="password" label="Mot de passe" onChange={(e) => setPassword(e.target.value)}/>
 							</div>
-							<p className="text-purple-600 text-sm flex gap-4 w-full justify-center items-center">
-								<a className="underline text-sm text-purple-600 inline-flex focus-visible:outline focus-visible:outline-2 focus-visible:outline-black focus-visible:outline-offset-2" href="#">Forgot password ?</a>
-								<a className="underline text-sm text-purple-600 inline-flex focus-visible:outline focus-visible:outline-2 focus-visible:outline-black focus-visible:outline-offset-2" href="#">Forgot username ?</a>
-							</p>
-							<Button onClick={navigateToUserPage} text="Log in" />
-						</form>
+							{/* <p className="text-purple-600 text-sm flex gap-4 w-full justify-center items-center">
+								<a className="underline text-sm text-purple-600 inline-flex focus-visible:outline focus-visible:outline-2 focus-visible:outline-black focus-visible:outline-offset-2"
+								   href="#">Forgot password ?</a>
+								<a className="underline text-sm text-purple-600 inline-flex focus-visible:outline focus-visible:outline-2 focus-visible:outline-black focus-visible:outline-offset-2"
+								   href="#">Forgot username ?</a>
+							</p> */}
+							<Button type="button" onClick={navigateToUserPage} text="Se connecter" />
+						</div>
 						<div className="justify-center mt-3 text-gray-500 hidden">OR</div>
 						<div className="flex justify-center mt-8">
-							<p className="text-gray-500 text-sm ">Don't have an account? <a
+							<p className="text-gray-500 text-sm ">Vous n'avez pas de compte ? <a
 								className="undefined text-sm text-purple-600 inline-flex focus-visible:outline focus-visible:outline-2 focus-visible:outline-black focus-visible:outline-offset-2 underline"
-								href="#">Sign up</a>
+								href={`/signup`}>S'inscrire
+                                </a>
 							</p>
 						</div>
 					</div>

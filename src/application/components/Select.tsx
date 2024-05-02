@@ -3,16 +3,17 @@ import { Children } from 'react';
 interface SelectProps {
     id: string | undefined;
     label: string;
+    onChange: () => void;
 }
 
-function Select({id, label}: SelectProps, { children }) {
+function Select({id, label, onChange}: SelectProps, { children }) {
     return (
         <div
             className="flex rounded-md bg-neutral-100 border-solid border-2 overflow-hidden
         w-full border-neutral-100 transition duration-75 ease-out hover:border-neutral-200
         focus-within:ring-2 focus-within:ring-black focus-within:ring-offset-2">
             <div className="relative grow">
-                <select name="username" required
+                <select name="username" required onChange={onChange}
                         aria-invalid="false" id={id}
                         className="!tracking-normal bg-transparent peer leading-[48px] pt-6 placeholder:leading-[48px] placeholder-transparent text-sm h-12 block px-3 py-2 w-full rounded-[8px] text-black transition duration-75 ease-out !outline-none">
                     <option value="">------</option>
