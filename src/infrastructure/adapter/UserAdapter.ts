@@ -19,4 +19,8 @@ export default class UserAdapter implements UserRepository {
 		return await this.userDao.getUserByUsername(username);
 	}
 
+	public async logUserIn(username: string, password: string): Promise<ActionSuccess> {
+		return this.userDao.verifyLogin(username, password);
+	}
+
 }

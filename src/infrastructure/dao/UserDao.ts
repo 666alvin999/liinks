@@ -15,6 +15,7 @@ export default class UserDao {
 			return new User(
 				users[0].fields.email as string,
 				users[0].fields.username as string,
+				users[0].fields.password as string,
 				users[0].fields.firstName as string,
 				users[0].fields.lastName as string,
 				users[0].fields.biography as string,
@@ -31,8 +32,9 @@ export default class UserDao {
 			firstName: user.getFirstName,
 			lastName: user.getLastName,
 			username: user.getUsername,
+			password: user.getPassword,
 			biography: user.getBiography,
-			backgroundColors: user.getBackgroundColors
+			backgroundColors: user.getBackgroundColors.reduce((color1, color2) => color1 + ";" + color2)
 		}
 
 		try {
@@ -40,6 +42,22 @@ export default class UserDao {
 			return new ActionSuccess(true);
 		} catch (error) {
 			return new ActionSuccess(false, "Impossible de créer le compte");
+		}
+	}
+
+	public async verifyLogin(username: string, password: string): Promise<ActionSuccess> {
+		try {
+			const user = await this.base('Users').select({
+				filterByFormula: `({username} = '${username}')`
+			}).all();
+
+			if (user.length === 1 && user[0].fields.password === password) {
+				return new ActionSuccess(true);
+			}
+
+			return new ActionSuccess(false, "Vos identifiants sont incorrects");
+		} catch(error) {
+			return new ActionSuccess(false, "Une erreur est survenue lors de l'authentification");
 		}
 	}
 
