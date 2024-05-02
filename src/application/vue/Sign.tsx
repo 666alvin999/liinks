@@ -1,13 +1,11 @@
-import {XrayView} from "iconoir-react";
+import Button from "../components/Button";
+import Logo from "../components/Logo";
 
 function Sign() {
     return (
         <>
             <div className="flex lg:flex-row bg-white relative font-inter tracking-tighter leading-normal">
-                <a className="absolute z-50 top-12 left-12 text-xl lg:text-2xl font-medium inline-flex justify-center items-center gap-2 ">
-                    <span className="block">Liiiks</span>
-                    <XrayView color="#4ade80"/>
-                </a>
+                <Logo position="left"/>
                 <main className="relative flex w-full min-h-screen justify-center pt-8 lg:pb-3 lg:p-12">
                     <div className="flex flex-col lg:!pt-24 w-10/12 lg:w-[640px] pt-16 p-6">
                         <div className="mt-6 mb-12">
@@ -53,13 +51,7 @@ function Sign() {
                                     I agree to receive offers, news and updates from Linktree.
                                 </label>
                             </div>
-                            <button
-                                className="inline-flex justify-center items-center gap-2 relative transition duration-75 ease-out w-full h-12 px-4 rounded-full outline-none focus-visible:ring-2 focus-visible:ring-offset-2 focus-visible:ring-black antialiased bg-purple-600 text-white mt-6 hover:bg-purple-800 active:bg-purple-800"
-                                type="submit">
-                                    <span className="flex items-center justify-center">
-                                        <span className="block font-semibold text-md">Log in</span>
-                                    </span>
-                            </button>
+                            <Button type="submit" text="S'inscrire" />
                         </form>
                         <div className="flex justify-center mt-6 text-gray-500 px-8"><p className="text-center">By clicking <strong>Create account</strong>, you agree to Linktree's Terms and Conditions and confirm you have read our Privacy Notice.</p></div>
                         <div className="justify-center mt-3 text-gray-500 hidden">OR</div>
