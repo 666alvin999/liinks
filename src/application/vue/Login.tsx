@@ -3,7 +3,6 @@ import Logo from "../components/Logo";
 import {useNavigate} from "react-router-dom";
 import {logUserIn} from "../initializer.ts";
 import {useState} from "react";
-import ActionSuccess from "../../domain/bean/ActionSuccess.ts";
 
 const Login = () => {
 
@@ -14,17 +13,11 @@ const Login = () => {
 	const [error, setError] = useState("");
 
 	const navigateToUserPage = async () => {
-		const verifyLogin = await logUserIn.execute(username, password);
-
-		if (verifyLogin.getSuccess) {
-			navigate("/666alvin999", {
-				state: {
-					loginUsername: "666alvin999"
-				}
-			})
-		} else {
-			setError(verifyLogin.getErrorMessage!);
-		}
+		navigate("/app/666alvin999", {
+			state: {
+				loginUsername: "666alvin999"
+			}
+		})
 	}
 
 	return (
@@ -44,10 +37,8 @@ const Login = () => {
 
 							</div>
 							<p className="text-purple-600 text-sm flex gap-4 w-full justify-center items-center">
-								<a className="underline text-sm text-purple-600 inline-flex focus-visible:outline focus-visible:outline-2 focus-visible:outline-black focus-visible:outline-offset-2"
-								   href="#">Forgot password ?</a>
-								<a className="underline text-sm text-purple-600 inline-flex focus-visible:outline focus-visible:outline-2 focus-visible:outline-black focus-visible:outline-offset-2"
-								   href="#">Forgot username ?</a>
+								<a className="underline text-sm text-purple-600 inline-flex focus-visible:outline focus-visible:outline-2 focus-visible:outline-black focus-visible:outline-offset-2" href="#">Forgot password ?</a>
+								<a className="underline text-sm text-purple-600 inline-flex focus-visible:outline focus-visible:outline-2 focus-visible:outline-black focus-visible:outline-offset-2" href="#">Forgot username ?</a>
 							</p>
 							<Button onClick={navigateToUserPage} text="Log in" />
 						</form>

@@ -10,7 +10,7 @@ export default class UpdateLink {
 		this.linkRepository = linkRepository;
 	}
 
-	public async execute({link, username}: { link: Link, username: string }): Promise<ActionSuccess> {
+	public async execute(link: Link, username: string): Promise<ActionSuccess> {
 		return this.linkRepository.update(link, username);
 	}
 

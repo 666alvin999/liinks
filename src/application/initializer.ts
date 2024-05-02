@@ -12,17 +12,19 @@ import UserDao from "../infrastructure/dao/UserDao.ts";
 import {Update} from "vite";
 import UpdateLink from "../domain/usecase/UpdateLink.ts";
 import LogUserIn from "../domain/usecase/LogUserIn.ts";
+import LinkPresentationMapper from "./mapper/LinkPresentationMapper.ts";
 
 const linkDao: LinkDao = new LinkDao();
 const userDao: UserDao = new UserDao();
 const linkMapper: LinkMapper = new LinkMapper();
 const linkRepository: LinkRepository = new LinkAdapter(linkDao, linkMapper);
 const userRepository: UserRepository = new UserAdapter(userDao);
-const linksPresenter: LinksPresenter = new LinksPresenter();
+const linkPresentationMapper: LinkPresentationMapper = new LinkPresentationMapper();
+const linksPresenter: LinksPresenter = new LinksPresenter(linkPresentationMapper);
 const createLink: CreateLink = new CreateLink(linkRepository);
 const updateLink: UpdateLink = new UpdateLink(linkRepository);
 const deleteLink: DeleteLink = new DeleteLink(linkRepository);
 const logUserIn: LogUserIn = new LogUserIn(userRepository);
 const getAllLinksByUsername = new GetAllLinksByUsername(linkRepository, userRepository);
 
-export {createLink, getAllLinksByUsername, deleteLink, linksPresenter, logUserIn};
+export {createLink, updateLink, getAllLinksByUsername, deleteLink, linksPresenter, logUserIn, linkPresentationMapper};
