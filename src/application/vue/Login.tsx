@@ -5,6 +5,8 @@ import {logUserIn} from "../initializer.ts";
 import {useState} from "react";
 import ActionSuccess from "../../domain/bean/ActionSuccess.ts";
 import InputText from "../components/InputText.tsx";
+import toast, { Toaster } from 'react-hot-toast';
+
 
 const Login = () => {
 
@@ -12,7 +14,6 @@ const Login = () => {
 
 	const [username, setUsername] = useState("");
 	const [password, setPassword] = useState("");
-	const [error, setError] = useState("");
 
 	const navigateToUserPage = async () => {
 		const verifyLogin = await logUserIn.execute(username, password);
@@ -24,14 +25,15 @@ const Login = () => {
 				}
 			})
 		} else {
-			setError(verifyLogin.getErrorMessage!);
-            alert(error);
+			console.log(verifyLogin.getErrorMessage!);
+            toast(verifyLogin.getErrorMessage!);
 		}
 	}
 
 	return (
 		<>
 			<div className="flex lg:flex-row bg-white relative font-inter tracking-tighter leading-normal">
+                <Toaster />
 				<Logo position="left" />
 				<main className="relative flex w-full min-h-screen justify-center pt-8 lg:pb-3 lg:p-12">
 					<div className="flex flex-col lg:!pt-24 w-10/12 lg:w-[640px] pt-16 p-6">

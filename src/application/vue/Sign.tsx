@@ -4,6 +4,8 @@ import {useNavigate} from "react-router-dom";
 import {logUserIn} from "../initializer.ts";
 import {useState} from "react";
 import InputText from "../components/InputText.tsx";
+import toast, { Toaster } from 'react-hot-toast';
+
 
 function Sign() {
 
@@ -12,7 +14,6 @@ function Sign() {
     const [username, setUsername] = useState("");
     const [password, setPassword] = useState("");
     const [checked, setChecker] = useState("");
-    const [error, setError] = useState("");
 
     const navigateToUserPage = async () => {
         if(checked) {
@@ -25,8 +26,8 @@ function Sign() {
                     }
                 })
             } else {
-                setError(verifyLogin.getErrorMessage!);
-                alert(error);
+                console.log(verifyLogin.getErrorMessage!);
+                toast(verifyLogin.getErrorMessage!);
             }
         }
     }
@@ -34,6 +35,7 @@ function Sign() {
     return (
         <>
             <div className="flex lg:flex-row bg-white relative font-inter tracking-tighter leading-normal">
+                <Toaster />
                 <Logo position="left"/>
                 <main className="relative flex w-full min-h-screen justify-center pt-8 lg:pb-3 lg:p-12">
                     <div className="flex flex-col lg:!pt-24 w-10/12 lg:w-[640px] pt-16 p-6">
@@ -63,7 +65,7 @@ function Sign() {
                         <div className="flex justify-center mt-8">
                             <p className="text-gray-500 text-sm ">Vous avez déjà un compte ? <a
                                 className="undefined text-sm text-purple-600 inline-flex focus-visible:outline focus-visible:outline-2 focus-visible:outline-black focus-visible:outline-offset-2 underline"
-                                href="#">Se connecter</a>
+                                href={`/login`}>Se connecter</a>
                             </p>
                         </div>
                     </div>
