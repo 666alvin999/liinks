@@ -2,26 +2,34 @@ import ButtonLink from "../components/ButtonLink";
 import Logo from "../components/Logo";
 
 function Home() {
-    return (
-        <>
-            <div className="flex lg:flex-row bg-white relative font-inter tracking-tighter leading-normal">
-                <Logo position="right"/>
-                <div className="min-h-screen lg:w-[calc(100vw-48%)] hidden lg:flex">
-                    <img src="/balazs-ketyi-74tfa1hJQws-unsplash.jpg" className="object-cover w-full h-full" alt=""/>
-                </div>
-                <main className="relative flex w-full min-h-screen justify-center pt-8 lg:pb-3 lg:p-12">
-                    <div className="flex flex-col items-center justify-center w-10/12 lg:w-[640px] p-6">
-                        <div className="mt-6 mb-12">
-                            <h1 className="text-black !leading-tight text-4xl lg:text-5xl font-extrabold leading-heading text-center mb-2">
-                                Tout ce que tu es. <br/>En un, simple lien en bio.
-                            </h1>
-                        </div>
-                        <ButtonLink text="Créez votre Liiinks" href="/" />
-                    </div>
-                </main>
+  return (
+    <>
+      <div className="relative flex bg-white font-inter leading-normal tracking-tighter lg:flex-row">
+        <Logo position="right" />
+        <div className="hidden min-h-screen lg:flex lg:w-[calc(100vw-48%)]">
+          <img
+            src="/balazs-ketyi-74tfa1hJQws-unsplash.jpg"
+            className="h-full w-full object-cover"
+            alt=""
+          />
+        </div>
+        <main className="relative flex min-h-screen w-full justify-center pt-8 lg:p-12 lg:pb-3">
+          <div className="flex w-10/12 flex-col items-center justify-center p-6 lg:w-[640px]">
+            <div className="mb-12 mt-6">
+              <h1 className="leading-heading mb-2 text-center text-4xl font-extrabold !leading-tight text-black lg:text-5xl">
+                Tout ce que tu es. <br />
+                En un, simple lien en bio.
+              </h1>
             </div>
-        </>
-    );
+            <ButtonLink
+              text="Créez votre Liiinks"
+              href={`/login`}
+            />
+          </div>
+        </main>
+      </div>
+    </>
+  );
 }
 
 export default Home;
