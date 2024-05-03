@@ -5,14 +5,20 @@ import {useLocation, useParams} from "react-router-dom";
 import {useEffect, useState} from "react";
 import LinksPresentationDTO from "../dto/LinksPresentationDTO.ts";
 import {getAllLinksByUsername, linksPresenter} from "../initializer.ts";
+import User from "../../domain/bean/User.ts";
 
 const LinkPage = () => {
+    const user: User = new User(
+        useLocation().state.user.email,
+        useLocation().state.user.username,
+        useLocation().state.user.password,
+        useLocation().state.user.firstName,
+        useLocation().state.user.lastName,
+        useLocation().state.user.biography,
+        useLocation().state.user.backgroundColors,
+    );
 
     const {username} = useParams();
-    const loginUsername = useLocation().state.loginUsername;
-
-    console.log(username);
-    console.log(loginUsername);
 
     const [reloadLinks, setReloadLinks] = useState<boolean>(false);
 
@@ -40,17 +46,21 @@ const LinkPage = () => {
                     <div className="flex flex-col w-10/12 lg:w-[640px] p-6 gap-8">
                         <div className="flex flex-col justify-center items-center">
                             <div className="aspect-square w-40 max-w-40 bg-red-600 mb-8">
-                                <img className="object-cover w-full h-full" src="https://via.placeholder.com/150" alt="logo"/>
+                                <img className="object-cover w-full h-full" src="https://via.placeholder.com/150"
+                                     alt="logo" />
                             </div>
                             <h1 className="text-white !leading-tight text-xl lg:text-2xl font-extrabold leading-heading text-center mb-1">
-                                Quentin Fabient
+                                {user.getFirstName} {user.getLastName}
                             </h1>
-                            <p className="text-white text-center px-10">Log in to your Liiinks</p>
+                            <h2 className="text-white !leading-tight text-l lg:text-xl font-extrabold leading-heading text-center mb-1">
+                                {user.getUsername}
+                            </h2>
+                            <p className="text-white text-center px-10">{user.getBiography}</p>
                         </div>
                         <div className="flex flex-col justify-center items-center gap-2">
                             {
                                 links?.getLinks.map((link: LinkPresentationDTO) =>
-                                    <ButtonLink setReloadLinks={setReloadLinks} username={username!} isAdmin={username === loginUsername} link={link} />
+                                    <ButtonLink setReloadLinks={setReloadLinks} username={username!} isAdmin={username === user.getUsername} link={link} />
                                 )
                             }
                         </div>

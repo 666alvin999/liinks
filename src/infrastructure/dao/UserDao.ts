@@ -45,18 +45,16 @@ export default class UserDao {
 		}
 	}
 
-	public async verifyLogin(username: string, password: string): Promise<ActionSuccess> {
+	public async verifyLogin(username: string, password: string): Promise<User | ActionSuccess> {
 		try {
-			const user = await this.base('Users').select({
-				filterByFormula: `({username} = '${username}')`
-			}).all();
+			const user: User | null = await this.getUserByUsername(username);
 
-			if (user.length === 1 && user[0].fields.password === password) {
-				return new ActionSuccess(true);
+			if (user !== null && password === user.getPassword) {
+				return user;
+			} else {
+				return new ActionSuccess(false, "Vos identifiants sont incorrects")
 			}
-
-			return new ActionSuccess(false, "Vos identifiants sont incorrects");
-		} catch(error) {
+		} catch (error) {
 			return new ActionSuccess(false, "Une erreur est survenue lors de l'authentification");
 		}
 	}
