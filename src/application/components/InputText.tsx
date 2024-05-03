@@ -1,8 +1,10 @@
+import {ChangeEvent} from "react";
+
 interface InputTextProps {
     type: string;
     id: string | undefined;
     label: string;
-    onChange: () => void;
+    onChange: (e: ChangeEvent<HTMLInputElement>) => void;
 }
   
 function InputText({ id, label, type, onChange }: InputTextProps) {

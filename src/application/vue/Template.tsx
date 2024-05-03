@@ -1,6 +1,28 @@
 import {XrayView} from "iconoir-react";
+import LinkPresentationDTO from "../dto/LinkPresentationDTO.ts";
+import ButtonLink from "../components/ButtonLink.tsx";
+import {useLocation, useParams} from "react-router-dom";
+import {useEffect, useState} from "react";
+import LinksPresentationDTO from "../dto/LinksPresentationDTO.ts";
+import {getAllLinksByUsername, linksPresenter} from "../initializer.ts";
 
-function Template() {
+const Template = () => {
+
+    const {username} = useParams();
+    const loginUsername = useLocation().state.loginUsername;
+    const [reloadLinks, setReloadLinks] = useState<boolean>(false);
+
+    const [links, setLinks] = useState<LinksPresentationDTO>();
+
+    useEffect(() => {
+        const getLinks = async () => {
+            const links: LinksPresentationDTO = await getAllLinksByUsername.execute(username!, linksPresenter);
+            setLinks(links);
+        }
+
+        getLinks();
+    }, [reloadLinks]);
+
     return (
         <>
             <div className="flex lg:flex-row bg-white relative font-inter tracking-tighter leading-normal">
@@ -22,26 +44,11 @@ function Template() {
                             <p className="text-white text-center px-10">Log in to your Liiinks</p>
                         </div>
                         <div className="flex flex-col justify-center items-center gap-2">
-                            <a href="#"
-                               className="bg-white border-solid border-2 border-neutral-100 rounded-full px-5 py-4 w-full flex items-center hover:bg-neutral-100 hover:border-neutral-200 focus-visible:ring-2 focus-visible:outline-neutral-200 focus-visible:ring-offset-2 focus-visible:ring-black antialiased">
-                                <XrayView className="absolute"/>
-                                <p className="text-black text-lg px-5 font-semibold text-center w-full">ginrioggroibgr</p>
-                            </a>
-                            <a href="#"
-                               className="bg-white border-solid border-2 border-neutral-100 rounded-full px-5 py-4 w-full flex items-center hover:bg-neutral-100 hover:border-neutral-200 focus-visible:ring-2 focus-visible:outline-neutral-200 focus-visible:ring-offset-2 focus-visible:ring-black antialiased">
-                                <XrayView className="absolute"/>
-                                <p className="text-black text-lg px-5 font-semibold text-center w-full">ginrioggroibgr</p>
-                            </a>
-                            <a href="#"
-                               className="bg-white border-solid border-2 border-neutral-100 rounded-full px-5 py-4 w-full flex items-center hover:bg-neutral-100 hover:border-neutral-200 focus-visible:ring-2 focus-visible:outline-neutral-200 focus-visible:ring-offset-2 focus-visible:ring-black antialiased">
-                                <XrayView className="absolute"/>
-                                <p className="text-black text-lg px-5 font-semibold text-center w-full">ginrioggroibgr</p>
-                            </a>
-                            <a href="#"
-                               className="bg-white border-solid border-2 border-neutral-100 rounded-full px-5 py-4 w-full flex items-center hover:bg-neutral-100 hover:border-neutral-200 focus-visible:ring-2 focus-visible:outline-neutral-200 focus-visible:ring-offset-2 focus-visible:ring-black antialiased">
-                                <XrayView className="absolute"/>
-                                <p className="text-black text-lg px-5 font-semibold text-center w-full">ginrioggroibgr</p>
-                            </a>
+                            {
+                                links?.getLinks.map((link: LinkPresentationDTO) =>
+                                    <ButtonLink setReloadLinks={setReloadLinks} username={username!} isAdmin={username === loginUsername.username} link={link} />
+                                )
+                            }
                         </div>
                     </div>
                 </main>

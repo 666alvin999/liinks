@@ -1,6 +1,7 @@
 import LinkPresentationDTO from "../dto/LinkPresentationDTO.ts";
 import {deleteLink, linkPresentationMapper, updateLink} from "../initializer.ts";
 import {useState} from "react";
+import {XrayView} from "iconoir-react";
 
 interface ButtonLinksProps {
 	setReloadLinks: (reload: boolean) => void;
@@ -48,18 +49,15 @@ const ButtonLink = ({setReloadLinks, username, isAdmin, link, children, position
 		<div className="w-[100%] flex gap-16">
 			{
 				!isEditing &&
-				<a href={link.getUrl} className="inline-flex justify-center items-center gap-2 relative transition duration-75 ease-out w-full h-12 px-4 rounded-full outline-none focus-visible:ring-2 focus-visible:ring-offset-2 focus-visible:ring-black antialiased bg-purple-600 text-white mt-8 hover:bg-purple-800 active:bg-purple-800">
-					{position === "left" ? children : ""}
-					<span className="block font-semibold text-md">{link.getLinkName}</span>
-
-					{position === "right" ? children : ""}
+				<a href="#" className="bg-white border-solid border-2 border-neutral-100 rounded-full px-5 py-4 w-full flex items-center hover:bg-neutral-100 hover:border-neutral-200 focus-visible:ring-2 focus-visible:outline-neutral-200 focus-visible:ring-offset-2 focus-visible:ring-black antialiased">
+					<XrayView className="absolute" />
+					<p className="text-black text-lg px-5 font-semibold text-center w-full">{linkName}</p>
 				</a>
 			}
 
 			{
 				isEditing &&
-				<input type="text" className="text-black" value={linkName} onClick={e => e.stopPropagation()}
-					   onChange={(e) => setLinkName(e.target.value)} />
+				<input type="text" className="text-black" value={linkName} onClick={e => e.stopPropagation()} onChange={(e) => setLinkName(e.target.value)} />
 			}
 
 			{

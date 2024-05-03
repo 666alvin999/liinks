@@ -3,9 +3,8 @@ import Logo from "../components/Logo";
 import {useNavigate} from "react-router-dom";
 import {logUserIn} from "../initializer.ts";
 import {useState} from "react";
-import ActionSuccess from "../../domain/bean/ActionSuccess.ts";
 import InputText from "../components/InputText.tsx";
-import toast, { Toaster } from 'react-hot-toast';
+import toast, {Toaster} from 'react-hot-toast';
 
 
 const Login = () => {
@@ -21,19 +20,19 @@ const Login = () => {
 		if (verifyLogin.getSuccess) {
 			navigate(`/${username}`, {
 				state: {
-					loginUsername: {username}
+					loginUsername: `${username}`
 				}
 			})
 		} else {
 			console.log(verifyLogin.getErrorMessage!);
-            toast(verifyLogin.getErrorMessage!);
+			toast(verifyLogin.getErrorMessage!);
 		}
 	}
 
 	return (
 		<>
 			<div className="flex lg:flex-row bg-white relative font-inter tracking-tighter leading-normal">
-                <Toaster />
+				<Toaster />
 				<Logo position="left" />
 				<main className="relative flex w-full min-h-screen justify-center pt-8 lg:pb-3 lg:p-12">
 					<div className="flex flex-col lg:!pt-24 w-10/12 lg:w-[640px] pt-16 p-6">
@@ -45,15 +44,11 @@ const Login = () => {
 						</div>
 						<div>
 							<div className="mb-4 flex flex-col gap-2">
-                                <InputText type="text" id="username" label="Nom d'utilisateur" onChange={(e) => setUsername(e.target.value)}/>
-                                <InputText type="password" id="password" label="Mot de passe" onChange={(e) => setPassword(e.target.value)}/>
+								<InputText type="text" id="username" label="Nom d'utilisateur"
+								           onChange={(e) => setUsername(e.target.value)} />
+								<InputText type="password" id="password" label="Mot de passe"
+								           onChange={(e) => setPassword(e.target.value)} />
 							</div>
-							{/* <p className="text-purple-600 text-sm flex gap-4 w-full justify-center items-center">
-								<a className="underline text-sm text-purple-600 inline-flex focus-visible:outline focus-visible:outline-2 focus-visible:outline-black focus-visible:outline-offset-2"
-								   href="#">Forgot password ?</a>
-								<a className="underline text-sm text-purple-600 inline-flex focus-visible:outline focus-visible:outline-2 focus-visible:outline-black focus-visible:outline-offset-2"
-								   href="#">Forgot username ?</a>
-							</p> */}
 							<Button type="button" onClick={navigateToUserPage} text="Se connecter" />
 						</div>
 						<div className="justify-center mt-3 text-gray-500 hidden">OR</div>
@@ -61,7 +56,7 @@ const Login = () => {
 							<p className="text-gray-500 text-sm ">Vous n'avez pas de compte ? <a
 								className="undefined text-sm text-purple-600 inline-flex focus-visible:outline focus-visible:outline-2 focus-visible:outline-black focus-visible:outline-offset-2 underline"
 								href={`/signup`}>S'inscrire
-                                </a>
+							</a>
 							</p>
 						</div>
 					</div>

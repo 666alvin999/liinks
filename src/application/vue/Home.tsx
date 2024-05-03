@@ -29,7 +29,8 @@ function Home() {
 								En un, simple lien en bio.
 							</h1>
 						</div>
-						<Button onClick={handleLoginClick} text="Se connecter" />
+
+						<Button type="button" onClick={handleLoginClick} text="Se connecter" />
 					</div>
 				</main>
 			</div>
