@@ -2,7 +2,7 @@ import Logo from "../components/Logo";
 import Button from "../components/Button.tsx";
 import {useNavigate} from "react-router-dom";
 
-function Home() {
+function WelcomePage() {
 
 	const navigate = useNavigate();
 
@@ -38,4 +38,4 @@ function Home() {
 	);
 }
 
-export default Home;
+export default WelcomePage;

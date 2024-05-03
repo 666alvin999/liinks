@@ -7,7 +7,7 @@ import InputText from "../components/InputText.tsx";
 import toast, {Toaster} from 'react-hot-toast';
 
 
-const Login = () => {
+const LoginPage = () => {
 
 	const navigate = useNavigate();
 
@@ -69,4 +69,4 @@ const Login = () => {
 	);
 }
 
-export default Login
+export default LoginPage

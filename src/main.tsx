@@ -2,29 +2,29 @@ import React from 'react'
 import ReactDOM from 'react-dom/client'
 import App from './application/vue/App.tsx'
 import './index.css'
-import Login from "./application/vue/Login.tsx";
+import LoginPage from "./application/vue/LoginPage.tsx";
 import {IconoirProvider} from "iconoir-react";
-import Home from "./application/vue/Home.tsx";
-import Sign from "./application/vue/Sign.tsx";
-import Template from "./application/vue/Template.tsx";
+import WelcomePage from "./application/vue/WelcomePage.tsx";
+import SignUpPage from "./application/vue/SignUpPage.tsx";
+import LinkPage from "./application/vue/LinkPage.tsx";
 import {createBrowserRouter, RouterProvider} from "react-router-dom";
 
 const router = createBrowserRouter([
 	{
 		path: "/",
-		element: <Home />,
+		element: <WelcomePage />,
 	},
 	{
 		path: "/login",
-		element: <Login />,
+		element: <LoginPage />,
 	},
 	{
 		path: "/signup",
-		element: <Sign />
+		element: <SignUpPage />
 	},
 	{
 		path: "/:username",
-		element: <Template />,
+		element: <LinkPage />,
 	},
 	{
 		path: "/app/:username",

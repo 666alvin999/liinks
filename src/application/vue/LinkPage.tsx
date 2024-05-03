@@ -6,10 +6,14 @@ import {useEffect, useState} from "react";
 import LinksPresentationDTO from "../dto/LinksPresentationDTO.ts";
 import {getAllLinksByUsername, linksPresenter} from "../initializer.ts";
 
-const Template = () => {
+const LinkPage = () => {
 
     const {username} = useParams();
     const loginUsername = useLocation().state.loginUsername;
+
+    console.log(username);
+    console.log(loginUsername);
+
     const [reloadLinks, setReloadLinks] = useState<boolean>(false);
 
     const [links, setLinks] = useState<LinksPresentationDTO>();
@@ -46,7 +50,7 @@ const Template = () => {
                         <div className="flex flex-col justify-center items-center gap-2">
                             {
                                 links?.getLinks.map((link: LinkPresentationDTO) =>
-                                    <ButtonLink setReloadLinks={setReloadLinks} username={username!} isAdmin={username === loginUsername.username} link={link} />
+                                    <ButtonLink setReloadLinks={setReloadLinks} username={username!} isAdmin={username === loginUsername} link={link} />
                                 )
                             }
                         </div>
@@ -57,4 +61,4 @@ const Template = () => {
     );
 }
 
-export default Template;
+export default LinkPage;

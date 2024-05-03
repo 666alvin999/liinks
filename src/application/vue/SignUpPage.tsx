@@ -7,7 +7,7 @@ import InputText from "../components/InputText.tsx";
 import toast, { Toaster } from 'react-hot-toast';
 
 
-function Sign() {
+function SignUpPage() {
 
     const navigate = useNavigate();
 
@@ -79,4 +79,4 @@ function Sign() {
     )
 }
 
-export default Sign
+export default SignUpPage
