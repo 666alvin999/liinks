@@ -6,7 +6,7 @@ import Input from "../component/Input.tsx";
 import toast, {Toaster} from 'react-hot-toast';
 import User from "../../../domain/bean/User.ts";
 import TextArea from "../component/TextArea.tsx";
-import {logUserIn, signUpUser} from "../../initializer.ts";
+import {signUpUser} from "../../initializer.ts";
 
 
 function SignUpPage() {
@@ -39,12 +39,11 @@ function SignUpPage() {
 			);
 
 			const signUpResult = await signUpUser.execute(user);
-			console.log(signUpResult);
 
 			if (signUpResult instanceof User) {
 				navigate(`/${username}`, {
 					state: {
-						user: signUpResult
+						currentUser: signUpResult
 					}
 				})
 			} else {

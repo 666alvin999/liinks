@@ -46,8 +46,8 @@ export default class User {
 		return this.backgroundColors;
 	}
 
-	public isSameUser(user: User): boolean {
-		return this.username === user.username;
+	public isSameUser(user: User | null): boolean {
+		return user != null && this.username === user.username;
 	}
 
 }

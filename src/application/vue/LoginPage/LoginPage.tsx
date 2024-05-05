@@ -24,7 +24,7 @@ const LoginPage = () => {
 		if (loginResult instanceof User) {
 			navigate(`/${username}`, {
 				state: {
-					user: loginResult
+					currentUser: loginResult
 				}
 			})
 		} else {

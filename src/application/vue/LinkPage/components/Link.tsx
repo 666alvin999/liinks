@@ -1,7 +1,8 @@
 import LinkPresentationDTO from "../../../dto/LinkPresentationDTO.ts";
 import {deleteLink, linkPresentationMapper, updateLink} from "../../../initializer.ts";
 import {useState} from "react";
-import {XrayView} from "iconoir-react";
+import {Behance, Facebook, Instagram, Linkedin, Twitter, XrayView} from "iconoir-react";
+import {ServiceUrl} from "../../../dto/ServiceUrl.ts";
 
 interface ButtonLinksProps {
 	setReloadLinks: (reload: boolean) => void;
@@ -48,7 +49,30 @@ const Link = ({setReloadLinks, username, isAdmin, link}: ButtonLinksProps) => {
 			{
 				!isEditing &&
 				<a href="#" className="bg-white border-solid border-2 border-neutral-100 rounded-full px-5 py-4 w-full flex items-center hover:bg-neutral-100 hover:border-neutral-200 focus-visible:ring-2 focus-visible:outline-neutral-200 focus-visible:ring-offset-2 focus-visible:ring-black antialiased">
-					<XrayView className="absolute" />
+					{
+						link.getUrl.includes(ServiceUrl.Facebook) &&
+						<Facebook className="absolute" />
+					}
+					{
+						link.getUrl.includes(ServiceUrl.Twitter) &&
+						<Twitter className="absolute" />
+					}
+					{
+						link.getUrl.includes(ServiceUrl.Instagram) &&
+						<Instagram className="absolute" />
+					}
+					{
+						link.getUrl.includes(ServiceUrl.LinkedIn) &&
+						<Linkedin className="absolute" />
+					}
+					{
+						link.getUrl.includes(ServiceUrl.Behance) &&
+						<Behance className="absolute" />
+					}
+					{
+						!link.getUrl.includes(ServiceUrl.LinkedIn) && !link.getUrl.includes(ServiceUrl.Facebook) && !link.getUrl.includes(ServiceUrl.Twitter) && !link.getUrl.includes(ServiceUrl.Instagram) && !link.getUrl.includes(ServiceUrl.Behance) &&
+						<XrayView className="absolute" />
+					}
 					<p className="text-black text-lg px-5 font-semibold text-center w-full">{linkName}</p>
 				</a>
 			}
