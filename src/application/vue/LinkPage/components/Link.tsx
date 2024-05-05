@@ -8,11 +8,9 @@ interface ButtonLinksProps {
 	username: string;
 	isAdmin: boolean;
 	link: LinkPresentationDTO;
-	children?: React.ReactNode;
-	position?: "left" | "right";
 }
 
-const Link = ({setReloadLinks, username, isAdmin, link, children, position}: ButtonLinksProps) => {
+const Link = ({setReloadLinks, username, isAdmin, link}: ButtonLinksProps) => {
 
 	const [isEditing, setEditing] = useState(false);
 	const [linkName, setLinkName] = useState(link.getLinkName);
@@ -46,7 +44,7 @@ const Link = ({setReloadLinks, username, isAdmin, link, children, position}: But
 	}
 
 	return (
-		<div className="w-[100%] flex gap-16">
+		<div className="w-[100%] flex gap-8">
 			{
 				!isEditing &&
 				<a href="#" className="bg-white border-solid border-2 border-neutral-100 rounded-full px-5 py-4 w-full flex items-center hover:bg-neutral-100 hover:border-neutral-200 focus-visible:ring-2 focus-visible:outline-neutral-200 focus-visible:ring-offset-2 focus-visible:ring-black antialiased">

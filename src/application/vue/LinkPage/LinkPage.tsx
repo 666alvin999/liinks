@@ -8,20 +8,22 @@ import {getAllLinksByUsername, linksPresenter} from "../../initializer.ts";
 import User from "../../../domain/bean/User.ts";
 
 const LinkPage = () => {
+
+    const locationStateUser = useLocation().state.user;
+
     const currentUser: User = new User(
-        useLocation().state.user.email,
-        useLocation().state.user.username,
-        useLocation().state.user.password,
-        useLocation().state.user.firstName,
-        useLocation().state.user.lastName,
-        useLocation().state.user.biography,
-        useLocation().state.user.backgroundColors,
+        locationStateUser.email,
+        locationStateUser.username,
+        locationStateUser.password,
+        locationStateUser.firstName,
+        locationStateUser.lastName,
+        locationStateUser.biography,
+        locationStateUser.backgroundColors,
     );
 
     const {username} = useParams();
 
     const [reloadLinks, setReloadLinks] = useState<boolean>(false);
-
     const [links, setLinks] = useState<LinksPresentationDTO>();
 
     useEffect(() => {
@@ -43,20 +45,24 @@ const LinkPage = () => {
                     </a>
                 </div>
                 <main className="relative flex w-full min-h-screen justify-center pt-8 lg:pb-3 lg:p-12 bg-gradient-to-b from-indigo-500 via-purple-500 to-pink-500">
-                    <div className="flex flex-col w-10/12 lg:w-[640px] p-6 gap-8">
+                    <div className="flex flex-col w-10/12 lg:w-[800px] p-6 gap-8">
                         <div className="flex flex-col justify-center items-center">
                             <div className="aspect-square w-40 max-w-40 bg-red-600 mb-8">
                                 <img className="object-cover w-full h-full" src="https://via.placeholder.com/150"
                                      alt="logo" />
                             </div>
+
                             <h1 className="text-white !leading-tight text-xl lg:text-2xl font-extrabold leading-heading text-center mb-1">
                                 {currentUser.getFirstName} {currentUser.getLastName}
                             </h1>
+
                             <h2 className="text-white !leading-tight text-l lg:text-xl font-extrabold leading-heading text-center mb-1">
                                 {currentUser.getUsername}
                             </h2>
+
                             <p className="text-white text-center px-10">{currentUser.getBiography}</p>
                         </div>
+
                         <div className="flex flex-col justify-center items-center gap-2">
                             {
                                 links?.getLinks.map((link: LinkPresentationDTO) =>
