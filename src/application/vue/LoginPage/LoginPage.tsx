@@ -59,9 +59,14 @@ const LoginPage = () => {
 								<Button type="submit" text="Se connecter" />
 							</form>
 
+							<div className="mb-2 mt-4">
+								<a className="undefined text-sm text-purple-600 focus-visible:outline focus-visible:outline-2 focus-visible:outline-black focus-visible:outline-offset-2 underline" href="/links">
+									<p className="leading-heading mb-2 text-center font-extrabold !leading-tight">
+										Continuer en tant qu'invité
+									</p>
+								</a>
+							</div>
 						</div>
-
-						<div className="justify-center mt-3 text-gray-500 hidden">OR</div>
 
 						<div className="flex justify-center mt-8">
 							<p className="text-gray-500 text-sm ">Vous n'avez pas de compte ? <a
@@ -79,6 +84,7 @@ const LoginPage = () => {
 			</div>
 		</>
 	);
+
 }
 
 export default LoginPage

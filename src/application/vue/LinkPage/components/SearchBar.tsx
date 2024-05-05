@@ -45,6 +45,7 @@ const SearchBar = ({currentUser}: SearchBarProps) => {
 			</form>
 		</>
 	);
+
 }
 
 export default SearchBar;

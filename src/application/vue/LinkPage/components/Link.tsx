@@ -100,6 +100,7 @@ const Link = ({setReloadLinks, username, isAdmin, link}: ButtonLinksProps) => {
 			}
 		</div>
 	);
+
 }
 
 export default Link

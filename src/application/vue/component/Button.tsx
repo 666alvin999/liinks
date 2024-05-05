@@ -28,7 +28,6 @@ function Button({onClick, type, text, children, position}: ButtonProps) {
 		);
 	}
 
-
 }
 
 export default Button

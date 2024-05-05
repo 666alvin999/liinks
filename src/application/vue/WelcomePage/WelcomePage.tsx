@@ -22,20 +22,31 @@ function WelcomePage() {
 					/>
 				</div>
 				<main className="relative flex min-h-screen w-full justify-center pt-8 lg:p-12 lg:pb-3">
-					<div className="flex w-10/12 flex-col items-center justify-center p-6 lg:w-[640px]">
+					<div className="flex w-10/12 flex-col items-center justify-center p-6 lg:w-[800px]">
 						<div className="mb-12 mt-6">
-							<h1 className="leading-heading mb-2 text-center text-4xl font-extrabold !leading-tight text-black lg:text-5xl">
+							<h1 className="leading-heading mb-2 text-center text-3xl font-extrabold !leading-tight text-black lg:text-5xl">
 								Tout ce que tu es. <br />
-								En un, simple lien en bio.
+								En un simple lien dans ta bio.
 							</h1>
 						</div>
 
-						<Button type="button" onClick={handleLoginClick} text="Se connecter" />
+						<div className="lg:w-[640px]">
+							<Button type="button" onClick={handleLoginClick} text="Se connecter" />
+						</div>
+
+						<div className="mb-12 mt-6">
+							<a className="undefined text-sm text-purple-600 focus-visible:outline focus-visible:outline-2 focus-visible:outline-black focus-visible:outline-offset-2 underline" href="/links">
+								<p className="leading-heading mb-2 text-center font-extrabold !leading-tight">
+									Continuer en tant qu'invité
+								</p>
+							</a>
+						</div>
 					</div>
 				</main>
 			</div>
 		</>
 	);
+
 }
 
 export default WelcomePage;

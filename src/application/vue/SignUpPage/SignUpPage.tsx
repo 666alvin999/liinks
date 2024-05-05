@@ -87,6 +87,14 @@ function SignUpPage() {
 							<Button type="submit" text="Créer un compte" />
 						</form>
 
+						<div className="mb-2 mt-4">
+							<a className="undefined text-sm text-purple-600 focus-visible:outline focus-visible:outline-2 focus-visible:outline-black focus-visible:outline-offset-2 underline" href="/links">
+								<p className="leading-heading mb-2 text-center font-extrabold !leading-tight">
+									Continuer en tant qu'invité
+								</p>
+							</a>
+						</div>
+
 						<div className="flex justify-center mt-6 text-gray-500 px-8">
 							<p className="text-center">
 								En cliquant sur <strong>Créer un compte</strong>, vous acceptez les conditions générales
@@ -107,7 +115,8 @@ function SignUpPage() {
 				</div>
 			</div>
 		</>
-	)
+	);
+
 }
 
 export default SignUpPage
