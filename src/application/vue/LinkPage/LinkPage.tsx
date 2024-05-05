@@ -8,7 +8,7 @@ import {getAllLinksByUsername, linksPresenter} from "../../initializer.ts";
 import User from "../../../domain/bean/User.ts";
 
 const LinkPage = () => {
-    const user: User = new User(
+    const currentUser: User = new User(
         useLocation().state.user.email,
         useLocation().state.user.username,
         useLocation().state.user.password,
@@ -50,17 +50,17 @@ const LinkPage = () => {
                                      alt="logo" />
                             </div>
                             <h1 className="text-white !leading-tight text-xl lg:text-2xl font-extrabold leading-heading text-center mb-1">
-                                {user.getFirstName} {user.getLastName}
+                                {currentUser.getFirstName} {currentUser.getLastName}
                             </h1>
                             <h2 className="text-white !leading-tight text-l lg:text-xl font-extrabold leading-heading text-center mb-1">
-                                {user.getUsername}
+                                {currentUser.getUsername}
                             </h2>
-                            <p className="text-white text-center px-10">{user.getBiography}</p>
+                            <p className="text-white text-center px-10">{currentUser.getBiography}</p>
                         </div>
                         <div className="flex flex-col justify-center items-center gap-2">
                             {
                                 links?.getLinks.map((link: LinkPresentationDTO) =>
-                                    <Link setReloadLinks={setReloadLinks} username={username!} isAdmin={username === user.getUsername} link={link} />
+                                    <Link setReloadLinks={setReloadLinks} username={username!} isAdmin={links?.getLinksOwner.isSameUser(currentUser)} link={link} />
                                 )
                             }
                         </div>

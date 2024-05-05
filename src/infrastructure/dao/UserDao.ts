@@ -6,27 +6,31 @@ export default class UserDao {
 
 	private base: Airtable.Base = new Airtable({apiKey: `${import.meta.env.VITE_AIRTABLE_API_KEY}`}).base(`${import.meta.env.VITE_AIRTABLE_BASE_ID}`);
 
-	public async getUserByUsername(username: string): Promise<User | null> {
-		const users = await this.base('Users').select({
-			filterByFormula: `({username} = '${username}')`
-		}).all();
+	public async getUserByUsername(username: string): Promise<User | ActionSuccess> {
+		try {
+			const users = await this.base('Users').select({
+				filterByFormula: `({username} = '${username}')`
+			}).all();
 
-		if (users.length === 1) {
-			return new User(
-				users[0].fields.email as string,
-				users[0].fields.username as string,
-				users[0].fields.password as string,
-				users[0].fields.firstName as string,
-				users[0].fields.lastName as string,
-				users[0].fields.biography as string,
-				users[0].fields.backgroundColors as Array<string>
-			);
+			if (users.length === 1) {
+				return new User(
+					users[0].fields.email as string,
+					users[0].fields.username as string,
+					users[0].fields.password as string,
+					users[0].fields.firstName as string,
+					users[0].fields.lastName as string,
+					users[0].fields.biography as string,
+					users[0].fields.backgroundColors as Array<string>
+				);
+			}
+
+			throw new Error();
+		} catch (error) {
+			return new ActionSuccess(false, "Nous n'avons pas trouvé d'utilisateur, veuillez réessayer")
 		}
-
-		return null;
 	}
 
-	public async create(user: User): Promise<ActionSuccess> {
+	public async create(user: User): Promise< User | ActionSuccess> {
 		const userObject = {
 			email: user.getEmail,
 			firstName: user.getFirstName,
@@ -38,8 +42,13 @@ export default class UserDao {
 		}
 
 		try {
-			await this.base('Users').create(userObject);
-			return new ActionSuccess(true);
+			const foundUser = await this.getUserByUsername(user.getUsername);
+			if (foundUser instanceof ActionSuccess && !foundUser.getSuccess) {
+				await this.base('Users').create(userObject);
+				return await this.getUserByUsername(user.getUsername);
+			} else {
+				return new ActionSuccess(false, "Ce nom d'utilisateur est déjà pris")
+			}
 		} catch (error) {
 			return new ActionSuccess(false, "Impossible de créer le compte");
 		}
@@ -47,12 +56,15 @@ export default class UserDao {
 
 	public async verifyLogin(username: string, password: string): Promise<User | ActionSuccess> {
 		try {
-			const user: User | null = await this.getUserByUsername(username);
+			const user: User | ActionSuccess = await this.getUserByUsername(username);
 
-			if (user !== null && password === user.getPassword) {
+			if (user instanceof User) {
+				if (user.getPassword !== password) {
+					return new ActionSuccess(false, "Les identifiants sont incorrects");
+				}
 				return user;
 			} else {
-				return new ActionSuccess(false, "Vos identifiants sont incorrects")
+				return user
 			}
 		} catch (error) {
 			return new ActionSuccess(false, "Une erreur est survenue lors de l'authentification");

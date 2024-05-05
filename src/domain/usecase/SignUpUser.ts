@@ -10,7 +10,7 @@ export default class SignUpUser {
 		this.userRepository = userRepository;
 	}
 
-	public async execute(user: User): Promise<ActionSuccess> {
+	public async execute(user: User): Promise<User | ActionSuccess> {
 		return this.userRepository.create(user);
 	}
 

@@ -4,6 +4,7 @@ import LinksPresenter from "../../application/presenter/LinksPresenter.ts";
 import ILinksPresenter from "../port/ILinksPresenter.ts";
 import User from "../bean/User.ts";
 import UserRepository from "../port/UserRepository.ts";
+import ActionSuccess from "../bean/ActionSuccess.ts";
 
 export default class GetAllLinksByUsername {
 

@@ -52,8 +52,8 @@ const LoginPage = () => {
 						<div>
 							<form onSubmit={navigateToUserPage}>
 								<div className="mb-4 flex flex-col gap-2">
-									<Input type="text" id="username" label="Nom d'utilisateur" onChange={(e) => setUsername(e.target.value)} />
-									<Input type="password" id="password" label="Mot de passe" onChange={(e) => setPassword(e.target.value)} />
+									<Input type="text" id="username" label="Nom d'utilisateur" onChange={(e) => setUsername(e.target.value)} value={username} required={true} />
+									<Input type="password" id="password" label="Mot de passe" onChange={(e) => setPassword(e.target.value)} value={password} required={true} />
 								</div>
 
 								<Button type="submit" text="Se connecter" />

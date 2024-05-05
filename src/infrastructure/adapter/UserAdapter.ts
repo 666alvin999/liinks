@@ -11,12 +11,18 @@ export default class UserAdapter implements UserRepository {
 		this.userDao = userDao;
 	}
 
-	create(user: User): Promise<ActionSuccess> {
+	create(user: User): Promise<User | ActionSuccess> {
 		return this.userDao.create(user);
 	}
 
 	public async getUserByUsername(username: string): Promise<User | null> {
-		return await this.userDao.getUserByUsername(username);
+		const user = await this.userDao.getUserByUsername(username);
+
+		if (user instanceof User) {
+			return user;
+		} else {
+			return null;
+		}
 	}
 
 	public async logUserIn(username: string, password: string): Promise<User | ActionSuccess> {

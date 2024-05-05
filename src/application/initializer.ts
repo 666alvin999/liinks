@@ -13,6 +13,7 @@ import {Update} from "vite";
 import UpdateLink from "../domain/usecase/UpdateLink.ts";
 import LogUserIn from "../domain/usecase/LogUserIn.ts";
 import LinkPresentationMapper from "./mapper/LinkPresentationMapper.ts";
+import SignUpUser from "../domain/usecase/SignUpUser.ts";
 
 const linkDao: LinkDao = new LinkDao();
 const userDao: UserDao = new UserDao();
@@ -25,6 +26,7 @@ const createLink: CreateLink = new CreateLink(linkRepository);
 const updateLink: UpdateLink = new UpdateLink(linkRepository);
 const deleteLink: DeleteLink = new DeleteLink(linkRepository);
 const logUserIn: LogUserIn = new LogUserIn(userRepository);
+const signUpUser: SignUpUser = new SignUpUser(userRepository);
 const getAllLinksByUsername = new GetAllLinksByUsername(linkRepository, userRepository);
 
-export {createLink, updateLink, getAllLinksByUsername, deleteLink, linksPresenter, logUserIn, linkPresentationMapper};
+export {createLink, updateLink, getAllLinksByUsername, deleteLink, linksPresenter, logUserIn, signUpUser, linkPresentationMapper};
