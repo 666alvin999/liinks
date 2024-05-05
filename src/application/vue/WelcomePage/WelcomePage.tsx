@@ -1,5 +1,5 @@
-import Logo from "../components/Logo";
-import Button from "../components/Button.tsx";
+import Logo from "../component/Logo.tsx";
+import Button from "../component/Button.tsx";
 import {useNavigate} from "react-router-dom";
 
 function WelcomePage() {

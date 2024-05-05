@@ -7,7 +7,7 @@ interface InputTextProps {
     onChange: (e: ChangeEvent<HTMLInputElement>) => void;
 }
   
-function InputText({ id, label, type, onChange }: InputTextProps) {
+function Input({ id, label, type, onChange }: InputTextProps) {
     return (
         <div
             className="flex rounded-md bg-neutral-100 border-solid border-2 overflow-hidden
@@ -23,4 +23,4 @@ function InputText({ id, label, type, onChange }: InputTextProps) {
     );
 }
 
-export default InputText
+export default Input

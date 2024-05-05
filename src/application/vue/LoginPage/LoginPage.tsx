@@ -1,13 +1,12 @@
-import Button from "../components/Button";
-import Logo from "../components/Logo";
+import Button from "../component/Button.tsx";
+import Logo from "../component/Logo.tsx";
 import {useNavigate} from "react-router-dom";
-import {logUserIn} from "../initializer.ts";
-import {useState} from "react";
-import InputText from "../components/InputText.tsx";
+import {logUserIn} from "../../initializer.ts";
+import {FormEvent, FormEventHandler, useState} from "react";
+import Input from "../component/Input.tsx";
 import toast, {Toaster} from 'react-hot-toast';
-import ActionSuccess from "../../domain/bean/ActionSuccess.ts";
-import User from "../../domain/bean/User.ts";
-
+import ActionSuccess from "../../../domain/bean/ActionSuccess.ts";
+import User from "../../../domain/bean/User.ts";
 
 const LoginPage = () => {
 
@@ -16,7 +15,10 @@ const LoginPage = () => {
 	const [username, setUsername] = useState("");
 	const [password, setPassword] = useState("");
 
-	const navigateToUserPage = async () => {
+	const navigateToUserPage: FormEventHandler = async (event: FormEvent<HTMLFormElement>) => {
+		event.preventDefault();
+		event.stopPropagation();
+
 		const loginResult: User | ActionSuccess = await logUserIn.execute(username, password);
 
 		if (loginResult instanceof User) {
@@ -48,13 +50,13 @@ const LoginPage = () => {
 						</div>
 
 						<div>
-							<form>
+							<form onSubmit={navigateToUserPage}>
 								<div className="mb-4 flex flex-col gap-2">
-									<InputText type="text" id="username" label="Nom d'utilisateur" onChange={(e) => setUsername(e.target.value)} />
-									<InputText type="password" id="password" label="Mot de passe" onChange={(e) => setPassword(e.target.value)} />
+									<Input type="text" id="username" label="Nom d'utilisateur" onChange={(e) => setUsername(e.target.value)} />
+									<Input type="password" id="password" label="Mot de passe" onChange={(e) => setPassword(e.target.value)} />
 								</div>
 
-								<Button type="button" onClick={navigateToUserPage} text="Se connecter" />
+								<Button type="submit" text="Se connecter" />
 							</form>
 
 						</div>

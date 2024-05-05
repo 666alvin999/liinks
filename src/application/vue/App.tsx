@@ -2,7 +2,7 @@ import {useEffect, useState} from "react";
 import {getAllLinksByUsername, linksPresenter} from "../initializer.ts";
 import LinksPresentationDTO from "../dto/LinksPresentationDTO.ts";
 import {useLocation, useParams} from "react-router-dom";
-import ButtonLink from "../components/ButtonLink.tsx";
+import Link from "./LinkPage/components/Link.tsx";
 import LinkPresentationDTO from "../dto/LinkPresentationDTO.ts";
 
 const App = () => {
@@ -26,7 +26,7 @@ const App = () => {
 		<>
 			{
 				links?.getLinks.map((link: LinkPresentationDTO) =>
-					<ButtonLink setReloadLinks={setReloadLinks} username={username!} isAdmin={username === loginUsername} link={link} />
+					<Link setReloadLinks={setReloadLinks} username={username!} isAdmin={username === loginUsername} link={link} />
 				)
 			}
 		</>

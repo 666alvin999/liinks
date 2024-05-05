@@ -1,11 +1,11 @@
 import {XrayView} from "iconoir-react";
-import LinkPresentationDTO from "../dto/LinkPresentationDTO.ts";
-import ButtonLink from "../components/ButtonLink.tsx";
+import LinkPresentationDTO from "../../dto/LinkPresentationDTO.ts";
+import Link from "./components/Link.tsx";
 import {useLocation, useParams} from "react-router-dom";
 import {useEffect, useState} from "react";
-import LinksPresentationDTO from "../dto/LinksPresentationDTO.ts";
-import {getAllLinksByUsername, linksPresenter} from "../initializer.ts";
-import User from "../../domain/bean/User.ts";
+import LinksPresentationDTO from "../../dto/LinksPresentationDTO.ts";
+import {getAllLinksByUsername, linksPresenter} from "../../initializer.ts";
+import User from "../../../domain/bean/User.ts";
 
 const LinkPage = () => {
     const user: User = new User(
@@ -60,7 +60,7 @@ const LinkPage = () => {
                         <div className="flex flex-col justify-center items-center gap-2">
                             {
                                 links?.getLinks.map((link: LinkPresentationDTO) =>
-                                    <ButtonLink setReloadLinks={setReloadLinks} username={username!} isAdmin={username === user.getUsername} link={link} />
+                                    <Link setReloadLinks={setReloadLinks} username={username!} isAdmin={username === user.getUsername} link={link} />
                                 )
                             }
                         </div>

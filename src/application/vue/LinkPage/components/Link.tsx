@@ -1,5 +1,5 @@
-import LinkPresentationDTO from "../dto/LinkPresentationDTO.ts";
-import {deleteLink, linkPresentationMapper, updateLink} from "../initializer.ts";
+import LinkPresentationDTO from "../../../dto/LinkPresentationDTO.ts";
+import {deleteLink, linkPresentationMapper, updateLink} from "../../../initializer.ts";
 import {useState} from "react";
 import {XrayView} from "iconoir-react";
 
@@ -12,7 +12,7 @@ interface ButtonLinksProps {
 	position?: "left" | "right";
 }
 
-const ButtonLink = ({setReloadLinks, username, isAdmin, link, children, position}: ButtonLinksProps) => {
+const Link = ({setReloadLinks, username, isAdmin, link, children, position}: ButtonLinksProps) => {
 
 	const [isEditing, setEditing] = useState(false);
 	const [linkName, setLinkName] = useState(link.getLinkName);
@@ -80,4 +80,4 @@ const ButtonLink = ({setReloadLinks, username, isAdmin, link, children, position
 	);
 }
 
-export default ButtonLink
+export default Link

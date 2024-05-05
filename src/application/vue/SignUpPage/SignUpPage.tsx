@@ -1,9 +1,9 @@
-import Button from "../components/Button";
-import Logo from "../components/Logo";
+import Button from "../component/Button.tsx";
+import Logo from "../component/Logo.tsx";
 import {useNavigate} from "react-router-dom";
-import {logUserIn} from "../initializer.ts";
+import {logUserIn} from "../../initializer.ts";
 import {useState} from "react";
-import InputText from "../components/InputText.tsx";
+import Input from "../component/Input.tsx";
 import toast, { Toaster } from 'react-hot-toast';
 
 
@@ -47,8 +47,8 @@ function SignUpPage() {
                         </div>
                         <form>
                             <div className="mb-4 flex flex-col gap-2">
-                                <InputText type="text" id="username" label="Nom d'utilisateur" onChange={(e) => setUsername(e.target.value)}/>
-                                <InputText type="password" id="password" label="Mot de passe" onChange={(e) => setPassword(e.target.value)}/>
+                                <Input type="text" id="username" label="Nom d'utilisateur" onChange={(e) => setUsername(e.target.value)}/>
+                                <Input type="password" id="password" label="Mot de passe" onChange={(e) => setPassword(e.target.value)}/>
                             </div>
                             <div className="flex items-center mt-4 gap-4 pt-2">
                                 <input id="rpgd" type="checkbox" value=""
