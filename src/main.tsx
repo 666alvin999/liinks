@@ -8,27 +8,28 @@ import WelcomePage from "./application/vue/WelcomePage/WelcomePage.tsx";
 import SignUpPage from "./application/vue/SignUpPage/SignUpPage.tsx";
 import LinkPage from "./application/vue/LinkPage/LinkPage.tsx";
 import {createBrowserRouter, RouterProvider} from "react-router-dom";
+import ErrorPage from "./application/vue/ErrorPage/ErrorPage.tsx";
 
 const router = createBrowserRouter([
 	{
 		path: "/",
 		element: <WelcomePage />,
+		errorElement: <ErrorPage/>
 	},
 	{
 		path: "/login",
 		element: <LoginPage />,
+		errorElement: <ErrorPage/>
 	},
 	{
 		path: "/signup",
-		element: <SignUpPage />
+		element: <SignUpPage />,
+		errorElement: <ErrorPage/>
 	},
 	{
 		path: "/:username",
 		element: <LinkPage />,
-	},
-	{
-		path: "/app/:username",
-		element: <App />,
+		errorElement: <ErrorPage/>
 	}
 ])
 
