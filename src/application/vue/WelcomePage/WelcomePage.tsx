@@ -37,7 +37,7 @@ function WelcomePage() {
 						</div>
 
 						<div className="mb-12 mt-6">
-							<a className="undefined text-sm text-purple-600 focus-visible:outline focus-visible:outline-2 focus-visible:outline-black focus-visible:outline-offset-2 underline" href="/links">
+							<a className="undefined text-sm text-purple-600 focus-visible:outline focus-visible:outline-2 focus-visible:outline-black focus-visible:outline-offset-2 underline" href="/liiinks">
 								<p className="leading-heading mb-2 text-center font-extrabold !leading-tight">
 									Continuer en tant qu'invité
 								</p>
