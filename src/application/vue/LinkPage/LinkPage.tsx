@@ -29,6 +29,8 @@ const LinkPage = () => {
 
 	const {username} = useParams();
 
+	document.title = `Liiinks - ${username}`
+
 	const [reloadLinks, setReloadLinks] = useState<boolean>(false);
 	const [links, setLinks] = useState<LinksPresentationDTO>();
 

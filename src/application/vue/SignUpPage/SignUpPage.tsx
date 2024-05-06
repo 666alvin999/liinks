@@ -11,6 +11,8 @@ import {signUpUser} from "../../initializer.ts";
 
 function SignUpPage() {
 
+	document.title = "Liiinks - Inscription";
+
 	const navigate = useNavigate();
 
 	const [firstName, setFirstName] = useState("");

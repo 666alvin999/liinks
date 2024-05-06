@@ -4,6 +4,8 @@ import {useNavigate} from "react-router-dom";
 
 function WelcomePage() {
 
+	document.title = "Liiinks";
+
 	const navigate = useNavigate();
 
 	const handleLoginClick = () => {

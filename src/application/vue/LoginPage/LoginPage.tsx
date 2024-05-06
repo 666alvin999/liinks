@@ -10,6 +10,8 @@ import User from "../../../domain/bean/User.ts";
 
 const LoginPage = () => {
 
+	document.title = "Liiinks - Connexion";
+
 	const navigate = useNavigate();
 
 	const [username, setUsername] = useState("");

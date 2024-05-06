@@ -6,6 +6,8 @@ import User from "../../../domain/bean/User.ts";
 
 const ErrorPage = () => {
 
+	document.title = "Liiinks - Erreur";
+
 	const navigate = useNavigate();
 	const locationStateUser = useLocation().state?.currentUser;
 
