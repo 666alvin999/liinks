@@ -1,8 +1,20 @@
 import LinkPresentationDTO from "../../../dto/LinkPresentationDTO.ts";
 import {deleteLink, linkPresentationMapper, updateLink} from "../../../initializer.ts";
 import {useState} from "react";
-import {Behance, Facebook, Instagram, Linkedin, Twitter, XrayView} from "iconoir-react";
+import {
+	Behance,
+	Check,
+	EditPencil,
+	Facebook,
+	Instagram,
+	Linkedin,
+	Trash,
+	Twitter,
+	Xmark,
+	XrayView
+} from "iconoir-react";
 import {ServiceUrl} from "../../../dto/ServiceUrl.ts";
+import ActionButton from "../../component/ActionButton.tsx";
 
 interface ButtonLinksProps {
 	setReloadLinks: (reload: boolean) => void;
@@ -11,7 +23,7 @@ interface ButtonLinksProps {
 	link: LinkPresentationDTO;
 }
 
-const Link = ({setReloadLinks, username, isAdmin, link}: ButtonLinksProps) => {
+const Liiink = ({setReloadLinks, username, isAdmin, link}: ButtonLinksProps) => {
 
 	const [isEditing, setEditing] = useState(false);
 	const [linkName, setLinkName] = useState(link.getLinkName);
@@ -24,6 +36,8 @@ const Link = ({setReloadLinks, username, isAdmin, link}: ButtonLinksProps) => {
 	const editLink = () => {
 		if (isEditing && linkName !== link.getLinkName) {
 			updateInDB();
+		} else {
+			setLinkName(link.getLinkName);
 		}
 
 		setEditing(!isEditing);
@@ -48,7 +62,7 @@ const Link = ({setReloadLinks, username, isAdmin, link}: ButtonLinksProps) => {
 		<div className="w-[100%] flex gap-8">
 			{
 				!isEditing &&
-				<a href="#" className="bg-white border-solid border-2 border-neutral-100 rounded-full px-5 py-4 w-full flex items-center hover:bg-neutral-100 hover:border-neutral-200 focus-visible:ring-2 focus-visible:outline-neutral-200 focus-visible:ring-offset-2 focus-visible:ring-black antialiased">
+				<a href={link.getUrl} className="bg-white border-solid border-2 border-neutral-100 rounded-full px-5 py-4 w-full flex items-center hover:bg-neutral-100 hover:border-neutral-200 focus-visible:ring-2 focus-visible:outline-neutral-200 focus-visible:ring-offset-2 focus-visible:ring-black antialiased">
 					{
 						link.getUrl.includes(ServiceUrl.Facebook) &&
 						<Facebook className="absolute" />
@@ -79,23 +93,30 @@ const Link = ({setReloadLinks, username, isAdmin, link}: ButtonLinksProps) => {
 
 			{
 				isEditing &&
-				<input type="text" className="text-black" value={linkName} onClick={e => e.stopPropagation()} onChange={(e) => setLinkName(e.target.value)} />
+				<input type="text" className="w-full px-5 py-4 bg-white rounded-full border-2 border-solid border-neutral-100 flex items-center hover:bg-neutral-100 hover:border-neutral-200 focus-visible:ring-2 focus-visible:outline-neutral-200 focus-visible:ring-offset-2 focus-visible:ring-black antialiased" value={linkName} onClick={e => e.stopPropagation()} onChange={(e) => setLinkName(e.target.value)} />
 			}
 
 			{
 				isAdmin &&
 				<>
-					<button className="border-2 border-black p-4" onClick={editLink}>
-						{
-							isEditing &&
-							"Valider"
-						}
-						{
-							!isEditing &&
-							"Modifier"
-						}
-					</button>
-					<button className="border-2 border-black p-4" onClick={deleteFromDB}>Supprimer</button>
+					{
+						isEditing &&
+						<>
+							{
+								linkName !== link.getLinkName &&
+								<ActionButton buttonChild={<Check />} type="button" onClick={editLink} />
+							}
+							<ActionButton buttonChild={<Xmark />} type="button" onClick={editLink} />
+						</>
+					}
+
+					{
+						!isEditing &&
+						<>
+							<ActionButton buttonChild={<EditPencil />} type="button" onClick={() => setEditing(!isEditing)} />
+							<ActionButton buttonChild={<Trash />} type="button" onClick={deleteFromDB} />
+						</>
+					}
 				</>
 			}
 		</div>
@@ -103,4 +124,4 @@ const Link = ({setReloadLinks, username, isAdmin, link}: ButtonLinksProps) => {
 
 }
 
-export default Link
+export default Liiink

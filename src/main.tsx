@@ -1,6 +1,5 @@
 import React from 'react'
 import ReactDOM from 'react-dom/client'
-import App from './application/vue/App.tsx'
 import './index.css'
 import LoginPage from "./application/vue/LoginPage/LoginPage.tsx";
 import {IconoirProvider} from "iconoir-react";
@@ -14,22 +13,22 @@ const router = createBrowserRouter([
 	{
 		path: "/",
 		element: <WelcomePage />,
-		errorElement: <ErrorPage/>
+		errorElement: <ErrorPage />
 	},
 	{
 		path: "/login",
 		element: <LoginPage />,
-		errorElement: <ErrorPage/>
+		errorElement: <ErrorPage />
 	},
 	{
 		path: "/signup",
 		element: <SignUpPage />,
-		errorElement: <ErrorPage/>
+		errorElement: <ErrorPage />
 	},
 	{
 		path: "/:username",
 		element: <LinkPage />,
-		errorElement: <ErrorPage/>
+		errorElement: <ErrorPage />
 	}
 ])
 
