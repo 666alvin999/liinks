@@ -51,9 +51,8 @@ function Input({id, label, type, onChange, value, required}: InputTextProps) {
 	} else {
 		return (
 			<div
-				className="flex rounded-md bg-neutral-100 border-solid border-2 overflow-hidden
-            w-full border-neutral-100 transition duration-75 ease-out hover:border-neutral-200
-            focus-within:ring-2 focus-within:ring-black focus-within:ring-offset-2">
+				className={`flex rounded-md bg-neutral-100 border-solid border-2 overflow-hidden
+            w-full border-neutral-100 transition duration-75 ease-out ${id !== "search" && "hover:border-neutral-200focus-within:ring-2 focus-within:ring-black focus-within:ring-offset-2"}`}>
 				<div className="relative grow">
 					<input name={id} required={required} type={type} placeholder="Email or username" onChange={onChange} aria-invalid="false" id={id} className="!tracking-normal bg-transparent peer leading-[48px] placeholder:leading-[48px] pt-8 placeholder-transparent text-sm h-12 block p-4 w-full rounded-[8px] text-black transition duration-75 ease-out !outline-none" value={value} />
 
