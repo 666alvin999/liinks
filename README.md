@@ -37,4 +37,6 @@ La méthode de stockage de données étant imposée, nous n'avons pas eu de choi
 
 Lors de la création de l'application, nous voulions rajouter des icônes afin de render le site un peu plus esthétique. Nous avons découvert Iconoir, une librairie d'icône gratuite d'utilisation vraiment complète. L'utilisation de sa librairie JS est instinctive et donc facile à prendre en main.
 
+---
+[Github du projet](https://github.com/666alvin999/liinks)
 [Liiinks](https://liiinks.netlify.app)
